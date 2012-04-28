@@ -2,7 +2,7 @@
 Summary:	Window and compositing manager based on Clutter
 Name:		muffin
 Version:	1.0.2
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		X11/Applications
 URL:		https://github.com/linuxmint/muffin
@@ -128,6 +128,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/muffin-message.1*
 %{_desktopdir}/muffin.desktop
 %dir %{_datadir}/muffin
+%dir %{_datadir}/muffin/icons
 %attr(755,root,root) %{_libdir}/libmuffin.so.*.*.*
 %ghost %{_libdir}/libmuffin.so.0
 %{_libdir}/muffin/Meta-3.0.gir
