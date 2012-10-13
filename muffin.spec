@@ -1,16 +1,13 @@
-%define		_internel_version  08ffc65
+%define		_internal_version  392f000
 Summary:	Window and compositing manager based on Clutter
 Name:		muffin
-Version:	1.0.2
-Release:	2
+Version:	1.1.1
+Release:	1
 License:	GPL v2+
 Group:		X11/Applications
 URL:		https://github.com/linuxmint/muffin
 Source0:	https://github.com/linuxmint/muffin/tarball/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	7da13590ceb8677209c15d1f2d9e024f
-# https://github.com/linuxmint/muffin/issues/9
-# https://github.com/rat4/muffin/compare/gtk_3.3
-Patch0:		rat4_gtk33.patch
+# Source0-md5:	e8b44ea43f041af680f94822d4a35032
 BuildRequires:	GConf2-devel
 BuildRequires:	clutter-devel >= 1.5.8
 BuildRequires:	desktop-file-utils
@@ -64,8 +61,7 @@ Header files and libraries for developing Muffin plugins. Also
 includes utilities for testing Metacity/Muffin themes.
 
 %prep
-%setup -q -n linuxmint-%{name}-%{_internel_version}
-%patch0 -p1
+%setup -q -n linuxmint-%{name}-%{_internal_version}
 
 %build
 %{__libtoolize}
