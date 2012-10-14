@@ -2,7 +2,7 @@
 Summary:	Window and compositing manager based on Clutter
 Name:		muffin
 Version:	1.1.1
-Release:	1
+Release:	1.1
 License:	GPL v2+
 Group:		X11/Applications
 URL:		https://github.com/linuxmint/muffin
@@ -13,6 +13,7 @@ BuildRequires:	clutter-devel >= 1.5.8
 BuildRequires:	desktop-file-utils
 BuildRequires:	gnome-doc-utils
 BuildRequires:	gobject-introspection-devel
+BuildRequires:	gsettings-desktop-schemas-devel
 BuildRequires:	gtk+3-devel >= 2.99.0
 BuildRequires:	pango-devel
 BuildRequires:	pkgconfig
@@ -74,7 +75,7 @@ includes utilities for testing Metacity/Muffin themes.
 	--disable-static \
 	--enable-compile-warnings=minimum \
 
-SHOULD_HAVE_DEFINED="HAVE_SM HAVE_XINERAMA HAVE_XFREE_XINERAMA HAVE_SHAPE HAVE_RANDR HAVE_STARTUP_NOTIFICATION HAVE_COMPOSITE_EXTENSION"
+SHOULD_HAVE_DEFINED="HAVE_SM HAVE_XINERAMA HAVE_XFREE_XINERAMA HAVE_SHAPE HAVE_RANDR HAVE_STARTUP_NOTIFICATION"
 
 for I in $SHOULD_HAVE_DEFINED; do
 	if ! grep -q "define $I" config.h; then
@@ -108,17 +109,18 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/ldconfig
+%if 0
 %gconf_schema_install muffin.schemas
 
 %preun
 %gconf_schema_uninstall muffin.schemas
+%endif
 
 %postun -p /sbin/ldconfig
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc README AUTHORS NEWS HACKING doc/theme-format.txt
-%{_sysconfdir}/gconf/schemas/muffin.schemas
 %attr(755,root,root) %{_bindir}/muffin
 %attr(755,root,root) %{_bindir}/muffin-message
 %{_mandir}/man1/muffin.1*
