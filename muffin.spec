@@ -109,14 +109,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/ldconfig
-%if 0
-%gconf_schema_install muffin.schemas
+%glib_compile_schemas
 
-%preun
-%gconf_schema_uninstall muffin.schemas
-%endif
-
-%postun -p /sbin/ldconfig
+%postun
+/sbin/ldconfig
+%glib_compile_schemas
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
@@ -135,6 +132,9 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/muffin
 %dir %{_libdir}/muffin/plugins
 %{_libdir}/muffin/plugins/default.so
+%{_datadir}/GConf/gsettings/muffin-schemas.convert
+%{_datadir}/glib-2.0/schemas/org.cinnamon.muffin.gschema.xml
+%{_datadir}/gnome-control-center/keybindings/50-muffin-windows.xml
 
 # XXX: nothing uses this?
 %dir %{_datadir}/gnome/wm-properties
