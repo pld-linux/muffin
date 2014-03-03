@@ -1,4 +1,4 @@
-%define		_internal_version  392f000
+%define		_internal_version  5e58a74
 Summary:	Window and compositing manager based on Clutter
 Summary(pl.UTF-8):	Zarządca okien i składania oparty na bibliotece Clutter
 Name:		muffin
