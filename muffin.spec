@@ -17,7 +17,7 @@ BuildRequires:	clutter-devel >= 1.9.10
 BuildRequires:	cogl-devel >= 1.9.6
 BuildRequires:	desktop-file-utils
 BuildRequires:	glib2-devel >= 1:2.25.10
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 BuildRequires:	gnome-common
 BuildRequires:	gnome-doc-utils >= 0.8.0
 BuildRequires:	gobject-introspection-devel >= 0.9.5
