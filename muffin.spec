@@ -23,9 +23,7 @@ BuildRequires:	glib2-devel >= 1:2.25.10
 BuildRequires:	gnome-common
 BuildRequires:	gnome-doc-utils >= 0.8.0
 BuildRequires:	gobject-introspection-devel >= 0.9.5
-BuildRequires:	gsettings-desktop-schemas-devel >= 3.3.0
 BuildRequires:	gtk+3-devel >= 3.3.7
-BuildRequires:	gtk-doc
 BuildRequires:	intltool >= 0.35.0
 BuildRequires:	libcanberra-gtk3-devel >= 0.26
 BuildRequires:	libtool
@@ -89,7 +87,6 @@ Summary(pl.UTF-8):	Pakiet programistyczny dla Muffina
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	clutter-devel >= 1.9.10
-Requires:	gsettings-desktop-schemas-devel >= 3.3.0
 Requires:	gtk+3-devel >= 3.3.7
 Requires:	xorg-lib-libX11-devel
 
