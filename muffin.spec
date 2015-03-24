@@ -2,12 +2,12 @@
 Summary:	Window and compositing manager based on Clutter
 Summary(pl.UTF-8):	Zarządca okien i składania oparty na bibliotece Clutter
 Name:		muffin
-Version:	2.0.5
+Version:	2.4.4
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
-Source0:	https://github.com/linuxmint/muffin/tarball/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	a50da71cd15fa168d2a3e285a071120a
+Source0:	https://github.com/linuxmint/muffin/archive/%{version}/%{name}-%{version}.tar.gz
+# Source0-md5:	aeb704e399574dd1b72f74e8362b1d97
 URL:		https://github.com/linuxmint/muffin
 BuildRequires:	GConf2-devel
 BuildRequires:	autoconf >= 2.50
@@ -16,14 +16,14 @@ BuildRequires:	cairo-devel >= 1.10.0
 BuildRequires:	clutter-devel >= 1.9.10
 BuildRequires:	cogl-devel >= 1.9.6
 BuildRequires:	desktop-file-utils
-BuildRequires:	glib2-devel >= 1:2.25.10
 BuildRequires:	gettext-tools
+BuildRequires:	glib2-devel >= 1:2.25.10
 BuildRequires:	gnome-common
 BuildRequires:	gnome-doc-utils >= 0.8.0
 BuildRequires:	gobject-introspection-devel >= 0.9.5
 BuildRequires:	gsettings-desktop-schemas-devel >= 3.3.0
-BuildRequires:	gtk-doc
 BuildRequires:	gtk+3-devel >= 3.3.7
+BuildRequires:	gtk-doc
 BuildRequires:	intltool >= 0.35.0
 BuildRequires:	libcanberra-gtk3-devel >= 0.26
 BuildRequires:	pango-devel >= 1.2.0
@@ -99,34 +99,24 @@ Pliki nagłówkowe do tworzenia wtyczek Muffina. Pakiet zawiera
 dodatkowo narzędzia do testowania motywów Metacity/Muffina.
 
 %prep
-%setup -q -n linuxmint-%{name}-%{_internal_version}
+%setup -q
+
+echo "AC_CONFIG_MACRO_DIR([m4])" >> configure.ac
 
 %build
+NOCONFIGURE=1 ./autogen.sh
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
 %{__autoheader}
 %{__automake}
 %configure \
-	ZENITY=/usr/bin/zenity \
+	ZENITY=%{_bindir}/zenity \
 	--disable-silent-rules \
 	--disable-static \
 	--enable-compile-warnings=minimum
 
-SHOULD_HAVE_DEFINED="HAVE_SM HAVE_XINERAMA HAVE_XFREE_XINERAMA HAVE_SHAPE HAVE_RANDR HAVE_STARTUP_NOTIFICATION"
-
-for I in $SHOULD_HAVE_DEFINED; do
-	if ! grep -q "define $I" config.h; then
-		echo "$I was not defined in config.h"
-		grep "$I" config.h
-		exit 1
-	else
-		echo "$I was defined as it should have been"
-		grep "$I" config.h
-	fi
-done
-
-%{__make} V=1
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -165,18 +155,12 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/muffin/icons
 %attr(755,root,root) %{_libdir}/libmuffin.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libmuffin.so.0
-%{_libdir}/muffin/Meta-3.0.gir
-%{_libdir}/muffin/Meta-3.0.typelib
+%{_libdir}/muffin/Meta-Muffin.0.gir
+%{_libdir}/muffin/Meta-Muffin.0.typelib
 %dir %{_libdir}/muffin
 %dir %{_libdir}/muffin/plugins
 %attr(755,root,root) %{_libdir}/muffin/plugins/default.so
-%{_datadir}/GConf/gsettings/muffin-schemas.convert
 %{_datadir}/glib-2.0/schemas/org.cinnamon.muffin.gschema.xml
-%{_datadir}/gnome-control-center/keybindings/50-muffin-windows.xml
-
-# XXX: nothing uses this?
-%dir %{_datadir}/gnome/wm-properties
-%{_datadir}/gnome/wm-properties/muffin-wm.desktop
 
 %files devel
 %defattr(644,root,root,755)
