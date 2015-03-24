@@ -1,4 +1,3 @@
-%define		_internal_version  5e58a74
 Summary:	Window and compositing manager based on Clutter
 Summary(pl.UTF-8):	Zarządca okien i składania oparty na bibliotece Clutter
 Name:		muffin
@@ -10,12 +9,15 @@ Source0:	https://github.com/linuxmint/muffin/archive/%{version}/%{name}-%{versio
 # Source0-md5:	aeb704e399574dd1b72f74e8362b1d97
 URL:		https://github.com/linuxmint/muffin
 BuildRequires:	GConf2-devel
+BuildRequires:	Mesa-libGL-devel
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	cairo-devel >= 1.10.0
+BuildRequires:	cinnamon-desktop-devel >= 2.3.0
 BuildRequires:	clutter-devel >= 1.9.10
 BuildRequires:	cogl-devel >= 1.9.6
 BuildRequires:	desktop-file-utils
+BuildRequires:	gettext-devel
 BuildRequires:	gettext-tools
 BuildRequires:	glib2-devel >= 1:2.25.10
 BuildRequires:	gnome-common
@@ -26,6 +28,7 @@ BuildRequires:	gtk+3-devel >= 3.3.7
 BuildRequires:	gtk-doc
 BuildRequires:	intltool >= 0.35.0
 BuildRequires:	libcanberra-gtk3-devel >= 0.26
+BuildRequires:	libtool
 BuildRequires:	pango-devel >= 1.2.0
 BuildRequires:	pkgconfig
 BuildRequires:	python >= 1:2.5
