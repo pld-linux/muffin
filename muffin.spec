@@ -49,6 +49,7 @@ BuildRequires:	xorg-lib-libXrender-devel
 BuildRequires:	xorg-lib-libxkbcommon-devel >= 0.4.3
 BuildRequires:	xorg-lib-libxkbcommon-x11
 BuildRequires:	xorg-lib-libxkbfile-devel
+Requires:	%{name}-libs = %{version}-%{release}
 Requires:	cinnamon-desktop >= 2.4.0
 #Requires:	control-center-filesystem
 Requires:	dbus-x11
@@ -108,7 +109,7 @@ Biblioteki współdzielone Muffina.
 Summary:	Development package for Muffin
 Summary(pl.UTF-8):	Pakiet programistyczny dla Muffina
 Group:		X11/Development/Libraries
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name}-libs = %{version}-%{release}
 Requires:	EGL-devel
 Requires:	atk-devel >= 1:2.5.3
 Requires:	cairo-devel >= 1.10
