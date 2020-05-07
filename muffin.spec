@@ -1,60 +1,60 @@
 Summary:	Window and compositing manager based on Clutter
 Summary(pl.UTF-8):	Zarządca okien i składania oparty na bibliotece Clutter
 Name:		muffin
-Version:	2.4.4
+Version:	4.4.3
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	https://github.com/linuxmint/muffin/archive/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	aeb704e399574dd1b72f74e8362b1d97
+# Source0-md5:	e44e52e7a25cf638852730ec763f0275
+Patch0:		%{name}-gir.patch
 URL:		https://github.com/linuxmint/muffin
-BuildRequires:	GConf2-devel
+BuildRequires:	EGL-devel
 BuildRequires:	Mesa-libGL-devel
+BuildRequires:	atk-devel
 BuildRequires:	autoconf >= 2.50
+BuildRequires:	autoconf-archive
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	cairo-devel >= 1.10.0
-BuildRequires:	cinnamon-desktop-devel >= 2.3.0
-BuildRequires:	clutter-devel >= 1.9.10
-BuildRequires:	cogl-devel >= 1.9.6
+BuildRequires:	cinnamon-desktop-devel >= 2.4.0
 BuildRequires:	desktop-file-utils
 BuildRequires:	gettext-devel
 BuildRequires:	gettext-tools
-BuildRequires:	glib2-devel >= 1:2.25.10
-BuildRequires:	gnome-common
+BuildRequires:	glib2-devel >= 1:2.50.3
 BuildRequires:	gnome-doc-utils >= 0.8.0
 BuildRequires:	gobject-introspection-devel >= 0.9.5
-BuildRequires:	gtk+3-devel >= 3.3.7
+BuildRequires:	gtk+3-devel >= 3.9.12
+BuildRequires:	gtk-doc >= 1.15
 BuildRequires:	intltool >= 0.35.0
+BuildRequires:	json-glib-devel
 BuildRequires:	libcanberra-gtk3-devel >= 0.26
-BuildRequires:	libtool
-BuildRequires:	pango-devel >= 1.2.0
-BuildRequires:	pkgconfig
+BuildRequires:	libtool >= 2:2.2.6
+BuildRequires:	libxcb-devel
+BuildRequires:	pango-devel >= 1:1.14.0
+BuildRequires:	pkgconfig >= 1:0.21
 BuildRequires:	python >= 1:2.5
 BuildRequires:	startup-notification-devel >= 0.7
+BuildRequires:	xkeyboard-config
 BuildRequires:	xorg-lib-libSM-devel
 BuildRequires:	xorg-lib-libX11-devel
-BuildRequires:	xorg-lib-libXcomposite-devel >= 0.2
+BuildRequires:	xorg-lib-libXcomposite-devel >= 0.3
 BuildRequires:	xorg-lib-libXcursor-devel
 BuildRequires:	xorg-lib-libXdamage-devel
 BuildRequires:	xorg-lib-libXext-devel
 BuildRequires:	xorg-lib-libXfixes-devel
+BuildRequires:	xorg-lib-libXi-devel >= 1.6.0
 BuildRequires:	xorg-lib-libXinerama-devel
 BuildRequires:	xorg-lib-libXrandr-devel
 BuildRequires:	xorg-lib-libXrender-devel
-Requires:	GConf2
-Requires:	cairo >= 1.10.0
-Requires:	clutter >= 1.9.10
-Requires:	cogl >= 1.9.6
+BuildRequires:	xorg-lib-libxkbcommon-devel >= 0.4.3
+BuildRequires:	xorg-lib-libxkbcommon-x11
+BuildRequires:	xorg-lib-libxkbfile-devel
+Requires:	cinnamon-desktop >= 2.4.0
 #Requires:	control-center-filesystem
 Requires:	dbus-x11
-Requires:	glib2 >= 1:2.25.10
-Requires:	gtk+3 >= 3.3.7
 Requires:	libcanberra-gtk3 >= 0.26
-Requires:	pango >= 1.2.0
 Requires:	startup-notification >= 0.7
-Requires:	xorg-lib-libXcomposite >= 0.2
 Requires:	zenity
-Requires(post):	/sbin/ldconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -81,14 +81,52 @@ powodu Muffin może być znacząco rozszerzany poprzez wtyczki, które
 mogą zarówno dodawać ładne efekty wizualne, jak i zmieniać zachowanie
 zarządzania oknami, aby pasowały do potrzeb środowiska.
 
+%package libs
+Summary:	Muffin shared libraries
+Summary(pl.UTF-8):	Biblioteki współdzielone Muffina
+Group:		X11/Libraries
+Requires:	atk >= 1:2.5.3
+Requires:	cairo >= 1.10
+Requires:	cairo-gobject >= 1.14.0
+Requires:	cinnamon-desktop-libs >= 2.4.0
+Requires:	glib2 >= 1:2.50.3
+Requires:	gtk+3 >= 3.9.12
+Requires:	json-glib >= 0.12.0
+Requires:	pango >= 1:1.30
+Requires:	xorg-lib-libXcomposite >= 0.4
+Requires:	xorg-lib-libXfixes >= 3
+Requires:	xorg-lib-libXi >= 1.6.0
+Requires:	xorg-lib-libXrandr >= 1.2
+
+%description libs
+Muffin shared libraries.
+
+%description libs -l pl.UTF-8
+Biblioteki współdzielone Muffina.
+
 %package devel
 Summary:	Development package for Muffin
 Summary(pl.UTF-8):	Pakiet programistyczny dla Muffina
-Group:		Development/Libraries
+Group:		X11/Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	clutter-devel >= 1.9.10
-Requires:	gtk+3-devel >= 3.3.7
+Requires:	EGL-devel
+Requires:	atk-devel >= 1:2.5.3
+Requires:	cairo-devel >= 1.10
+Requires:	cairo-gobject-devel >= 1.14.0
+Requires:	cinnamon-desktop-devel >= 2.4.0
+Requires:	gdk-pixbuf2-devel >= 2.0
+Requires:	glib2-devel >= 1:2.50.3
+Requires:	gtk+3-devel >= 3.9.12
+Requires:	json-glib-devel >= 0.12.0
+Requires:	pango-devel >= 1:1.30
 Requires:	xorg-lib-libX11-devel
+Requires:	xorg-lib-libXcomposite-devel >= 0.4
+Requires:	xorg-lib-libXdamage-devel
+Requires:	xorg-lib-libXext-devel
+Requires:	xorg-lib-libXfixes-devel >= 3
+Requires:	xorg-lib-libXi-devel >= 1.6.0
+Requires:	xorg-lib-libXrandr-devel >= 1.2
+Requires:	xorg-lib-libXtst-devel
 
 %description devel
 Header files for developing Muffin plugins. Also includes utilities
@@ -98,78 +136,149 @@ for testing Metacity/Muffin themes.
 Pliki nagłówkowe do tworzenia wtyczek Muffina. Pakiet zawiera
 dodatkowo narzędzia do testowania motywów Metacity/Muffina.
 
+%package apidocs
+Summary:	API documentation for Muffin libraries
+Summary(pl.UTF-8):	Dokumentacja API bibliotek Muffina
+Group:		Documentation
+%if "%{_rpmversion}" >= "4.6"
+BuildArch:	noarch
+%endif
+
+%description apidocs
+API documentation for Muffin libraries.
+
+%description apidocs -l pl.UTF-8
+Dokumentacja API bibliotek Muffina.
+
 %prep
 %setup -q
-
-echo "AC_CONFIG_MACRO_DIR([m4])" >> configure.ac
+%patch0 -p1
 
 %build
-NOCONFIGURE=1 ./autogen.sh
+install -d m4
+%{__glib_gettextize}
+%{__gtkdocize}
+%{__intltoolize}
 %{__libtoolize}
-%{__aclocal}
+%{__aclocal} -I m4
 %{__autoconf}
 %{__autoheader}
 %{__automake}
+cd cogl
+%{__libtoolize}
+%{__aclocal} -I build/autotools
+%{__autoconf}
+%{__autoheader}
+%{__automake}
+cd ../clutter
+%{__libtoolize}
+%{__aclocal} -I build/autotools
+%{__autoconf}
+%{__autoheader}
+%{__automake}
+cd ..
+# kms-egl-platform and wayland-egl-server are unsupported in cinnamon (and disabled by default in future versions)
 %configure \
 	ZENITY=%{_bindir}/zenity \
+	--disable-kms-egl-platform \
 	--disable-silent-rules \
 	--disable-static \
-	--enable-compile-warnings=minimum
+	--disable-wayland-egl-server \
+	--enable-compile-warnings=minimum \
+	--with-html-dir=%{_gtkdocdir}
 
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
+
 %{__make} install \
-	GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 \
 	DESTDIR=$RPM_BUILD_ROOT
 
-# Remove libtool archives.
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
-
-%find_lang %{name}
+# obsoleted by pkg-config
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la \
+	$RPM_BUILD_ROOT%{_libdir}/muffin/*.la
 
 # Muffin contains a .desktop file so we just need to validate it
 desktop-file-validate $RPM_BUILD_ROOT%{_desktopdir}/%{name}.desktop
+
+%{__mv} $RPM_BUILD_ROOT%{_gtkdocdir}/{clutter,muffin-clutter}
+
+%find_lang %{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post
-/sbin/ldconfig
 %glib_compile_schemas
 
 %postun
-/sbin/ldconfig
 %glib_compile_schemas
+
+%post	libs -p /sbin/ldconfig
+%postun	libs -p /sbin/ldconfig
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc README AUTHORS NEWS HACKING doc/theme-format.txt
+%doc AUTHORS ChangeLog MAINTAINERS NEWS README
 %attr(755,root,root) %{_bindir}/muffin
 %attr(755,root,root) %{_bindir}/muffin-message
-%{_mandir}/man1/muffin.1*
-%{_mandir}/man1/muffin-message.1*
-%{_desktopdir}/muffin.desktop
-%dir %{_datadir}/muffin
-%dir %{_datadir}/muffin/icons
-%attr(755,root,root) %{_libdir}/libmuffin.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libmuffin.so.0
-%{_libdir}/muffin/Meta-Muffin.0.gir
-%{_libdir}/muffin/Meta-Muffin.0.typelib
-%dir %{_libdir}/muffin
+%attr(755,root,root) %{_bindir}/muffin-theme-viewer
+%attr(755,root,root) %{_bindir}/muffin-window-demo
+%attr(755,root,root) %{_libexecdir}/muffin-restart-helper
 %dir %{_libdir}/muffin/plugins
 %attr(755,root,root) %{_libdir}/muffin/plugins/default.so
 %{_datadir}/glib-2.0/schemas/org.cinnamon.muffin.gschema.xml
+%dir %{_datadir}/muffin
+%dir %{_datadir}/muffin/icons
+%{_datadir}/muffin/icons/muffin-window-demo.png
+%dir %{_datadir}/muffin/theme
+%{_datadir}/muffin/theme/metacity-theme-3.xml
+%{_desktopdir}/muffin.desktop
+%{_mandir}/man1/muffin.1*
+%{_mandir}/man1/muffin-message.1*
+%{_mandir}/man1/muffin-theme-viewer.1*
+%{_mandir}/man1/muffin-window-demo.1*
+
+%files libs
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/libmuffin.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libmuffin.so.0
+%attr(755,root,root) %{_libdir}/libmuffin-clutter-0.so
+%attr(755,root,root) %{_libdir}/libmuffin-cogl-0.so
+%attr(755,root,root) %{_libdir}/libmuffin-cogl-pango-0.so
+%attr(755,root,root) %{_libdir}/libmuffin-cogl-path-0.so
+%dir %{_libdir}/muffin
+%{_libdir}/muffin/Cally-0.typelib
+%{_libdir}/muffin/Clutter-0.typelib
+%{_libdir}/muffin/ClutterX11-0.typelib
+%{_libdir}/muffin/Cogl-0.typelib
+%{_libdir}/muffin/CoglPango-0.typelib
+%{_libdir}/muffin/Meta-Muffin.0.typelib
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/muffin-theme-viewer
-%attr(755,root,root) %{_bindir}/muffin-window-demo
 %attr(755,root,root) %{_libdir}/libmuffin.so
+%attr(755,root,root) %{_libdir}/muffin/libmuffin-clutter-0.so
+%attr(755,root,root) %{_libdir}/muffin/libmuffin-cogl-0.so
+%attr(755,root,root) %{_libdir}/muffin/libmuffin-cogl-pango-0.so
+%attr(755,root,root) %{_libdir}/muffin/libmuffin-cogl-path-0.so
+%{_libdir}/muffin/Cally-0.gir
+%{_libdir}/muffin/Clutter-0.gir
+%{_libdir}/muffin/ClutterX11-0.gir
+%{_libdir}/muffin/Cogl-0.gir
+%{_libdir}/muffin/CoglPango-0.gir
+%{_libdir}/muffin/Meta-Muffin.0.gir
 %{_includedir}/muffin
-%{_datadir}/muffin/icons/muffin-window-demo.png
 %{_pkgconfigdir}/libmuffin.pc
+%{_pkgconfigdir}/muffin-clutter-0.pc
+%{_pkgconfigdir}/muffin-clutter-x11-0.pc
+%{_pkgconfigdir}/muffin-cogl-0.pc
+%{_pkgconfigdir}/muffin-cogl-pango-0.pc
+%{_pkgconfigdir}/muffin-cogl-path-0.pc
 %{_pkgconfigdir}/muffin-plugins.pc
-%{_mandir}/man1/muffin-theme-viewer.1*
-%{_mandir}/man1/muffin-window-demo.1*
+
+%files apidocs
+%defattr(644,root,root,755)
+%{_gtkdocdir}/muffin
+%{_gtkdocdir}/muffin-clutter
