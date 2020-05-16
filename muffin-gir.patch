@@ -1,11 +1,11 @@
---- muffin-4.4.3/src/Makefile.am.orig	2020-03-21 12:02:02.000000000 +0100
-+++ muffin-4.4.3/src/Makefile.am	2020-05-07 07:21:18.304146460 +0200
-@@ -281,7 +281,7 @@
+--- muffin-4.6.0/src/Makefile.am.orig	2020-05-15 22:05:25.908877961 +0200
++++ muffin-4.6.0/src/Makefile.am	2020-05-15 22:06:05.885328057 +0200
+@@ -282,7 +282,7 @@
  	muffin-enum-types.h			\
  	$(libmuffininclude_base_headers)	\
  	$(filter %.c,$(libmuffin_la_SOURCES))
--@META_GIR@_SCANNERFLAGS = $(WARN_SCANNERFLAGS) --warn-all --warn-error
-+@META_GIR@_SCANNERFLAGS = $(WARN_SCANNERFLAGS) --warn-all
+-@META_GIR@_SCANNERFLAGS = $(WARN_SCANNERFLAGS) --warn-all --warn-error --identifier-prefix=Meta
++@META_GIR@_SCANNERFLAGS = $(WARN_SCANNERFLAGS) --warn-all --identifier-prefix=Meta
  
  endif
  

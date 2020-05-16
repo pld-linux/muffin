@@ -1,12 +1,12 @@
 Summary:	Window and compositing manager based on Clutter
 Summary(pl.UTF-8):	Zarządca okien i składania oparty na bibliotece Clutter
 Name:		muffin
-Version:	4.4.3
+Version:	4.6.0
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
 Source0:	https://github.com/linuxmint/muffin/archive/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	e44e52e7a25cf638852730ec763f0275
+# Source0-md5:	d628f7f9fe748f261c94b9dd1f47d0ff
 Patch0:		%{name}-gir.patch
 URL:		https://github.com/linuxmint/muffin
 BuildRequires:	EGL-devel
@@ -21,7 +21,6 @@ BuildRequires:	desktop-file-utils
 BuildRequires:	gettext-devel
 BuildRequires:	gettext-tools
 BuildRequires:	glib2-devel >= 1:2.50.3
-BuildRequires:	gnome-doc-utils >= 0.8.0
 BuildRequires:	gobject-introspection-devel >= 0.9.5
 BuildRequires:	gtk+3-devel >= 3.9.12
 BuildRequires:	gtk-doc >= 1.15
@@ -29,6 +28,7 @@ BuildRequires:	intltool >= 0.35.0
 BuildRequires:	json-glib-devel
 BuildRequires:	libcanberra-gtk3-devel >= 0.26
 BuildRequires:	libtool >= 2:2.2.6
+# scb-randr xcb-res
 BuildRequires:	libxcb-devel
 BuildRequires:	pango-devel >= 1:1.14.0
 BuildRequires:	pkgconfig >= 1:0.21
@@ -47,7 +47,7 @@ BuildRequires:	xorg-lib-libXinerama-devel
 BuildRequires:	xorg-lib-libXrandr-devel
 BuildRequires:	xorg-lib-libXrender-devel
 BuildRequires:	xorg-lib-libxkbcommon-devel >= 0.4.3
-BuildRequires:	xorg-lib-libxkbcommon-x11
+BuildRequires:	xorg-lib-libxkbcommon-x11-devel
 BuildRequires:	xorg-lib-libxkbfile-devel
 Requires:	%{name}-libs = %{version}-%{release}
 Requires:	cinnamon-desktop >= 2.4.0
@@ -178,13 +178,10 @@ cd ../clutter
 %{__autoheader}
 %{__automake}
 cd ..
-# kms-egl-platform and wayland-egl-server are unsupported in cinnamon (and disabled by default in future versions)
 %configure \
 	ZENITY=%{_bindir}/zenity \
-	--disable-kms-egl-platform \
 	--disable-silent-rules \
 	--disable-static \
-	--disable-wayland-egl-server \
 	--enable-compile-warnings=minimum \
 	--with-html-dir=%{_gtkdocdir}
 
