@@ -141,9 +141,7 @@ dodatkowo narzędzia do testowania motywów Metacity/Muffina.
 Summary:	API documentation for Muffin libraries
 Summary(pl.UTF-8):	Dokumentacja API bibliotek Muffina
 Group:		Documentation
-%if "%{_rpmversion}" >= "4.6"
 BuildArch:	noarch
-%endif
 
 %description apidocs
 API documentation for Muffin libraries.
