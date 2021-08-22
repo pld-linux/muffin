@@ -1,12 +1,13 @@
 Summary:	Window and compositing manager based on Clutter
 Summary(pl.UTF-8):	Zarządca okien i składania oparty na bibliotece Clutter
 Name:		muffin
-Version:	4.6.0
+Version:	4.8.1
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
+#Source0Download: https://github.com/linuxmint/muffin/releases
 Source0:	https://github.com/linuxmint/muffin/archive/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	d628f7f9fe748f261c94b9dd1f47d0ff
+# Source0-md5:	fe0ca2d74999f78b4abc2a6a98a058c2
 Patch0:		%{name}-gir.patch
 URL:		https://github.com/linuxmint/muffin
 BuildRequires:	EGL-devel
@@ -28,11 +29,12 @@ BuildRequires:	intltool >= 0.35.0
 BuildRequires:	json-glib-devel
 BuildRequires:	libcanberra-gtk3-devel >= 0.26
 BuildRequires:	libtool >= 2:2.2.6
-# scb-randr xcb-res
+# xcb-randr xcb-res
 BuildRequires:	libxcb-devel
 BuildRequires:	pango-devel >= 1:1.14.0
 BuildRequires:	pkgconfig >= 1:0.21
 BuildRequires:	python >= 1:2.5
+BuildRequires:	rpm-build >= 4.6
 BuildRequires:	startup-notification-devel >= 0.7
 BuildRequires:	xkeyboard-config
 BuildRequires:	xorg-lib-libSM-devel
