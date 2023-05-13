@@ -2,7 +2,7 @@ Summary:	Window and compositing manager based on Clutter
 Summary(pl.UTF-8):	Zarządca okien i składania oparty na bibliotece Clutter
 Name:		muffin
 Version:	4.8.1
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		X11/Applications
 #Source0Download: https://github.com/linuxmint/muffin/releases
@@ -22,16 +22,17 @@ BuildRequires:	desktop-file-utils
 BuildRequires:	gettext-devel
 BuildRequires:	gettext-tools
 BuildRequires:	glib2-devel >= 1:2.50.3
-BuildRequires:	gobject-introspection-devel >= 0.9.5
+BuildRequires:	gobject-introspection-devel >= 1.40
 BuildRequires:	gtk+3-devel >= 3.9.12
 BuildRequires:	gtk-doc >= 1.15
 BuildRequires:	intltool >= 0.35.0
 BuildRequires:	json-glib-devel
 BuildRequires:	libcanberra-gtk3-devel >= 0.26
 BuildRequires:	libtool >= 2:2.2.6
+BuildRequires:	libwacom-devel >= 0.13
 # xcb-randr xcb-res
 BuildRequires:	libxcb-devel
-BuildRequires:	pango-devel >= 1:1.14.0
+BuildRequires:	pango-devel >= 1:1.30
 BuildRequires:	pkgconfig >= 1:0.21
 BuildRequires:	python >= 1:2.5
 BuildRequires:	rpm-build >= 4.6
@@ -39,14 +40,14 @@ BuildRequires:	startup-notification-devel >= 0.7
 BuildRequires:	xkeyboard-config
 BuildRequires:	xorg-lib-libSM-devel
 BuildRequires:	xorg-lib-libX11-devel
-BuildRequires:	xorg-lib-libXcomposite-devel >= 0.3
+BuildRequires:	xorg-lib-libXcomposite-devel >= 0.4
 BuildRequires:	xorg-lib-libXcursor-devel
 BuildRequires:	xorg-lib-libXdamage-devel
 BuildRequires:	xorg-lib-libXext-devel
-BuildRequires:	xorg-lib-libXfixes-devel
+BuildRequires:	xorg-lib-libXfixes-devel >= 3
 BuildRequires:	xorg-lib-libXi-devel >= 1.6.0
 BuildRequires:	xorg-lib-libXinerama-devel
-BuildRequires:	xorg-lib-libXrandr-devel
+BuildRequires:	xorg-lib-libXrandr-devel >= 1.2
 BuildRequires:	xorg-lib-libXrender-devel
 BuildRequires:	xorg-lib-libxkbcommon-devel >= 0.4.3
 BuildRequires:	xorg-lib-libxkbcommon-x11-devel
@@ -95,6 +96,7 @@ Requires:	cinnamon-desktop-libs >= 2.4.0
 Requires:	glib2 >= 1:2.50.3
 Requires:	gtk+3 >= 3.9.12
 Requires:	json-glib >= 0.12.0
+Requires:	libwacom >= 0.13
 Requires:	pango >= 1:1.30
 Requires:	xorg-lib-libXcomposite >= 0.4
 Requires:	xorg-lib-libXfixes >= 3
@@ -242,10 +244,10 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libmuffin.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libmuffin.so.0
-%attr(755,root,root) %{_libdir}/libmuffin-clutter-0.so
-%attr(755,root,root) %{_libdir}/libmuffin-cogl-0.so
-%attr(755,root,root) %{_libdir}/libmuffin-cogl-pango-0.so
-%attr(755,root,root) %{_libdir}/libmuffin-cogl-path-0.so
+%attr(755,root,root) %{_libdir}/muffin/libmuffin-clutter-0.so
+%attr(755,root,root) %{_libdir}/muffin/libmuffin-cogl-0.so
+%attr(755,root,root) %{_libdir}/muffin/libmuffin-cogl-pango-0.so
+%attr(755,root,root) %{_libdir}/muffin/libmuffin-cogl-path-0.so
 %dir %{_libdir}/muffin
 %{_libdir}/muffin/Cally-0.typelib
 %{_libdir}/muffin/Clutter-0.typelib
@@ -257,10 +259,10 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libmuffin.so
-%attr(755,root,root) %{_libdir}/muffin/libmuffin-clutter-0.so
-%attr(755,root,root) %{_libdir}/muffin/libmuffin-cogl-0.so
-%attr(755,root,root) %{_libdir}/muffin/libmuffin-cogl-pango-0.so
-%attr(755,root,root) %{_libdir}/muffin/libmuffin-cogl-path-0.so
+%attr(755,root,root) %{_libdir}/libmuffin-clutter-0.so
+%attr(755,root,root) %{_libdir}/libmuffin-cogl-0.so
+%attr(755,root,root) %{_libdir}/libmuffin-cogl-pango-0.so
+%attr(755,root,root) %{_libdir}/libmuffin-cogl-path-0.so
 %{_libdir}/muffin/Cally-0.gir
 %{_libdir}/muffin/Clutter-0.gir
 %{_libdir}/muffin/ClutterX11-0.gir
