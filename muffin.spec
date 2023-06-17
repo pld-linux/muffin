@@ -15,6 +15,8 @@ Source0:	https://github.com/linuxmint/muffin/archive/%{version}/%{name}-%{versio
 # Source0-md5:	9bc750e05279cd1df74bfb28079addbf
 URL:		https://github.com/linuxmint/muffin
 BuildRequires:	EGL-devel
+# <EGL/eglmesaext.h>
+BuildRequires:	Mesa-libEGL-devel
 BuildRequires:	Mesa-libgbm-devel >= 10.3
 BuildRequires:	OpenGL-GLX-devel
 BuildRequires:	atk-devel
