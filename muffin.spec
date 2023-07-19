@@ -6,13 +6,13 @@
 Summary:	Window and compositing manager based on Clutter
 Summary(pl.UTF-8):	Zarządca okien i składania oparty na bibliotece Clutter
 Name:		muffin
-Version:	5.8.0
-Release:	2
+Version:	5.8.1
+Release:	1
 License:	GPL v2+
 Group:		X11/Applications
 #Source0Download: https://github.com/linuxmint/muffin/tags
 Source0:	https://github.com/linuxmint/muffin/archive/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	9bc750e05279cd1df74bfb28079addbf
+# Source0-md5:	14b4467c288324de6ee6f8e865341d0d
 URL:		https://github.com/linuxmint/muffin
 BuildRequires:	EGL-devel
 # <EGL/eglmesaext.h>
