@@ -6,13 +6,13 @@
 Summary:	Window and compositing manager based on Clutter
 Summary(pl.UTF-8):	Zarządca okien i składania oparty na bibliotece Clutter
 Name:		muffin
-Version:	5.8.1
+Version:	6.0.1
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
 #Source0Download: https://github.com/linuxmint/muffin/tags
 Source0:	https://github.com/linuxmint/muffin/archive/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	14b4467c288324de6ee6f8e865341d0d
+# Source0-md5:	08ef5e5051b8c1e8ff1049bcf5718c45
 URL:		https://github.com/linuxmint/muffin
 BuildRequires:	EGL-devel
 # <EGL/eglmesaext.h>
@@ -38,7 +38,7 @@ BuildRequires:	libinput-devel >= 1.7
 BuildRequires:	libwacom-devel >= 0.13
 # xcb-randr xcb-res
 BuildRequires:	libxcb-devel
-BuildRequires:	meson >= 0.50.0
+BuildRequires:	meson >= 0.56.0
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pango-devel >= 1:1.30
 %{?with_pipewire:BuildRequires:	pipewire-devel >= 0.3.0}
@@ -175,6 +175,8 @@ dodatkowo narzędzia do testowania motywów Metacity/Muffina.
 %meson build \
 	%{?with_sysprof:-Dprofiler=true} \
 	%{!?with_pipewire:-Dremote_desktop=false} \
+	-Dxwayland_initfd=enabled \
+	-Dxwayland_path=/usr/bin/Xwayland
 
 %ninja_build -C build
 
