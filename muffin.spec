@@ -6,13 +6,13 @@
 Summary:	Window and compositing manager based on Clutter
 Summary(pl.UTF-8):	Zarządca okien i składania oparty na bibliotece Clutter
 Name:		muffin
-Version:	6.2.0
+Version:	6.4.1
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications
 #Source0Download: https://github.com/linuxmint/muffin/tags
 Source0:	https://github.com/linuxmint/muffin/archive/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	57b787b438c40d05b6c59cd19b77ed0e
+# Source0-md5:	f21cbdfc8efde459e0cfe6fd06ef65ed
 URL:		https://github.com/linuxmint/muffin
 BuildRequires:	EGL-devel
 # <EGL/eglmesaext.h>
@@ -26,7 +26,7 @@ BuildRequires:	dbus-devel
 BuildRequires:	fribidi-devel >= 1.0.0
 BuildRequires:	gettext-devel
 BuildRequires:	gettext-tools
-BuildRequires:	glib2-devel >= 1:2.61.1
+BuildRequires:	glib2-devel >= 1:2.67.3
 BuildRequires:	gobject-introspection-devel >= 1.40
 BuildRequires:	graphene-devel >= 1.9.3
 BuildRequires:	gtk+3-devel >= 3.19.8
@@ -114,7 +114,7 @@ Requires:	atk >= 1:2.5.3
 Requires:	cairo >= 1.10
 Requires:	cairo-gobject >= 1.14.0
 Requires:	cinnamon-desktop-libs >= 5.3
-Requires:	glib2 >= 1:2.61.1
+Requires:	glib2 >= 1:2.67.3
 Requires:	graphene >= 1.9.3
 Requires:	gtk+3 >= 3.19.8
 Requires:	json-glib >= 0.12.0
@@ -145,7 +145,7 @@ Requires:	cairo-devel >= 1.10
 Requires:	cairo-gobject-devel >= 1.14.0
 Requires:	cinnamon-desktop-devel >= 5.3
 Requires:	gdk-pixbuf2-devel >= 2.0
-Requires:	glib2-devel >= 1:2.61.1
+Requires:	glib2-devel >= 1:2.67.3
 Requires:	graphene-devel >= 1.9.3
 Requires:	gtk+3-devel >= 3.19.8
 Requires:	json-glib-devel >= 0.12.0
