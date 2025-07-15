@@ -172,18 +172,18 @@ dodatkowo narzędzia do testowania motywów Metacity/Muffina.
 %setup -q
 
 %build
-%meson build \
+%meson \
 	%{?with_sysprof:-Dprofiler=true} \
 	%{!?with_pipewire:-Dremote_desktop=false} \
 	-Dxwayland_initfd=enabled \
 	-Dxwayland_path=/usr/bin/Xwayland
 
-%ninja_build -C build
+%meson_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%ninja_install -C build
+%meson_install
 
 %find_lang %{name}
 
